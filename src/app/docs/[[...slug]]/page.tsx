@@ -9,9 +9,10 @@ import { notFound } from 'next/navigation';
 import { getMDXComponents } from '@/mdx-components';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
+import { getGithubLastEdit } from 'fumadocs-core/content/github';
 
 const EDIT_REPO_OWNER = process.env.NEXT_PUBLIC_DOCS_GH_OWNER || 'QuintixLabs';
-const EDIT_REPO_NAME = process.env.NEXT_PUBLIC_DOCS_GH_REPO || 'Voux';
+const EDIT_REPO_NAME = process.env.NEXT_PUBLIC_DOCS_GH_REPO || 'voux-docs';
 const EDIT_REPO_BRANCH = process.env.NEXT_PUBLIC_DOCS_GH_BRANCH || 'master';
 const EDIT_PATH_PREFIX = process.env.NEXT_PUBLIC_DOCS_GH_PATH_PREFIX || 'content/docs';
 
@@ -22,7 +23,20 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
 
   const MDX = page.data.body;
   const editPath = `${EDIT_PATH_PREFIX}/${page.path}`;
-  const lastUpdate = page.data.lastModified;
+  let lastUpdate: Date | undefined;
+  try {
+    const lastEdit = await getGithubLastEdit({
+      owner: EDIT_REPO_OWNER,
+      repo: EDIT_REPO_NAME,
+      path: editPath,
+      branch: EDIT_REPO_BRANCH,
+    });
+    if (lastEdit) {
+      lastUpdate = lastEdit;
+    }
+  } catch (_) {
+    lastUpdate = undefined;
+  }
 
   return (
     <DocsPage
