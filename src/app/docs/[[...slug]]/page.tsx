@@ -39,16 +39,21 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
 
   return (
     <DocsPage
-      toc={page.data.toc}
-      full={page.data.full}
-      editOnGithub={{
-        owner: EDIT_REPO_OWNER,
-        repo: EDIT_REPO_NAME,
-        sha: EDIT_REPO_BRANCH,
-        path: editPath,
-      }}
-      lastUpdate={lastUpdate}
-    >
+        toc={page.data.toc}
+        
+        // this enables the "clerk" style for the table of contents
+        tableOfContent={{
+          style: 'clerk',
+        }}
+        full={page.data.full}
+        editOnGithub={{
+          owner: EDIT_REPO_OWNER,
+          repo: EDIT_REPO_NAME,
+          sha: EDIT_REPO_BRANCH,
+          path: editPath,
+        }}
+        lastUpdate={lastUpdate}
+      >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
