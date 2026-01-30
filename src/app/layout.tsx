@@ -8,6 +8,26 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  title: 'Voux Docs',
+  description: 'Documentation for Voux.',
+  openGraph: {
+    title: 'Voux Docs',
+    description: 'Documentation for Voux.',
+    images: [
+      {
+        url: '/assets/banner.png',
+        width: 1200,
+        height: 630,
+        alt: 'Voux Docs',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Voux Docs',
+    description: 'Documentation for Voux.',
+    images: ['/assets/banner.png'],
+  },
   icons: {
     icon: [
       {
