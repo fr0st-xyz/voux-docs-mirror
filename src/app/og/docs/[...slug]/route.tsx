@@ -2,12 +2,20 @@ import { getPageImage, source } from '@/lib/source';
 import { notFound } from 'next/navigation';
 import { ImageResponse } from 'next/og';
 import { generate as DefaultImage } from 'fumadocs-ui/og';
+import path from 'path';
+import { readFile } from 'fs/promises';
 
 export const revalidate = false;
 
-const interFont = fetch(
-  'https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcviYwYZ90A2N58.woff2'
-).then((res) => res.arrayBuffer());
+const interFontPath = path.join(
+  process.cwd(),
+  'src',
+  'app',
+  'og',
+  'docs',
+  '[...slug]',
+  'Inter-Medium.otf'
+);
 
 export async function GET(
   _req: Request,
@@ -22,7 +30,13 @@ export async function GET(
     process.env.NEXT_PUBLIC_DOCS_BASE_URL ||
     'https://voux-docs.vercel.app';
   const logoUrl = new URL('/assets/logo.png', siteUrl).toString();
-  const interData = await interFont;
+  let interData: ArrayBuffer | null = null;
+  try {
+    const file = await readFile(interFontPath);
+    interData = file.buffer.slice(file.byteOffset, file.byteOffset + file.byteLength);
+  } catch (_) {
+    interData = null;
+  }
 
   return new ImageResponse(
     (
@@ -43,20 +57,22 @@ export async function GET(
     {
       width: 1200,
       height: 630,
-      fonts: [
-        {
-          name: 'Inter',
-          data: interData,
-          weight: 400,
-          style: 'normal',
-        },
-        {
-          name: 'Inter',
-          data: interData,
-          weight: 700,
-          style: 'normal',
-        },
-      ],
+      fonts: interData
+        ? [
+            {
+              name: 'Inter',
+              data: interData,
+              weight: 400,
+              style: 'normal',
+            },
+            {
+              name: 'Inter',
+              data: interData,
+              weight: 700,
+              style: 'normal',
+            },
+          ]
+        : [],
     },
   );
 }
