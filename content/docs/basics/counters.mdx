@@ -13,14 +13,18 @@ The counter is the main feature of **Voux**. It simply counts views.
 
 You can create a counter either from the main page **(if the instance is public)** or from the dashboard if you are logged in.
 
-When creating a counter, you can choose between two modes:
+When creating a counter, you can choose between `2` modes:
 
-### Unique
+---
+
+### Unique visitors
 
 **This mode counts only one visit per IP.**
 
 If the same IP visits the page again, it will not increase the counter.
 This is useful if you want something closer to **"real"** visitors.
+
+---
 
 ### Every-visit
 
@@ -31,17 +35,19 @@ By default, the throttle is `0s`, meaning every refresh counts.
 
 You can think of this like an old-school hit counter from early web days.
 
-After creating a counter, Voux gives you a small embed script.
+---
+
+After creating a counter, Voux gives you both an **embed script** and an **SVG embed**.
 Once you place it on your website, views will start counting automatically.
 
 <strong>From the dashboard, you can also edit counters, add notes, and use filters to manage them.</strong>
 
 ---
 
-## Styling your counter
+## Styling script embeds
 
 Styling your counter with **Voux** is super simple.  
-All you need to do is wrap the embed script inside an element.
+All you need to do is wrap the embed inside an element.
 
 Here is a basic example using a `<span>`:
 
@@ -72,6 +78,59 @@ Here is a simple example that centers the counter on the screen and makes the te
 
 That is it. Your counter is now styled and ready to use.
 You can change the **font**, **colors**, **size**, or **layout** however you like.
+
+---
+
+## Styling SVGs embeds
+
+Voux also provides an **SVG embed** for cases where you cannot use **JavaScript**, 
+such as **READMEs**, **Markdown files**, or **restricted platforms**.
+
+```html
+<img src="https://your-domain/embed/abc123.svg" alt="Voux counter">
+```
+
+You can also customize the **SVG** by passing **parameters** in the `URL` query string:
+
+```html
+<img src="https://your-domain/embed/abc123.svg?bg=F54927&color=ffffff" alt="Voux counter">
+```
+
+| Parameter    | Values / Range          | Description                                      |
+| ------------ | ----------------------- | ------------------------------------------------ |
+| `label`      | `0` `1`                 | Show or hide the label                           |
+| `inline`     | `0` `1`                 | Place label and value on the same line           |
+| `wrap`       | `0` `1`                 | Allow text wrapping. Default off when `inline=1` |
+| `align`      | `left` `center` `right` | Text alignment                                   |
+| `size`       | `12` – `48`               | Base size for label and value                    |
+| `sizeValue`  | `12` – `48`               | Override value text size                         |
+| `sizeLabel`  | `12` – `48`               | Override label text size                         |
+| `maxWidth`   | `160` – `900`             | Max width of the SVG                             |
+| `color`      | hex                     | Base text color                                  |
+| `valueColor` | hex                     | Override value color only                        |
+| `labelColor` | hex                     | Override label color only                        |
+| `bg`         | hex                     | Background color                                 |
+| `radius`     | `0` – `24`                | Background corner radius                         |
+| `padX`       | `4` – `64`                | Horizontal padding                               |
+| `padY`       | `4` – `64`                | Vertical padding                                 |
+
+
+## SVGs in documentation
+
+Some documentation pages **do not allow JavaScript**, for example when writing in `MDX` or other restricted formats. In these cases, SVG embeds are used instead.
+
+Because documentation pages are served without **image proxy caching**, Voux can access real visitor IPs, so Unique Visitor mode works correctly.
+
+| Mode               | Behavior                         | Example                                                                  |
+| ------------------ | -------------------------------- | ------------------------------------------------------------------------ |
+| 👤 Unique visitors | Supported                        | ✅ |
+| 🔁 Every visit | Supported and updates on refresh | ✅ |
+
+{/* ![](https://your-domain/embed/abc123.svg?bg=0F1115&color=ffffff) */}
+
+And... On **[GitHub](https://github.com/QuintixLabs/Voux?tab=readme-ov-file#-svg-counters-on-github)**, **Unique Visitors** are not available due to image proxy caching. `:(`
+
+
 
 {/* i feel like this looks better */}
 &nbsp;
