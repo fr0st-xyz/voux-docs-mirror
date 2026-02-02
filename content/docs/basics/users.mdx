@@ -58,6 +58,45 @@ Members have limited access. They can:
 
 ---
 
+## Admin permissions
+
+Admin permissions control what admins are allowed to do.
+
+### Runtime settings
+**Allows admins to change how things work at runtime.**
+
+### Branding
+**Allows admins to change names, titles, and visual settings.**
+
+### API keys
+**Allows admins to create and manage API keys.**
+
+### Users
+**Allows admins to create, edit, and remove users.**
+
+### Danger actions
+**Allows admins to manage and delete any counter.**
+
+<Callout title="Warning" type="warning">
+This permission allows **deleting data**.
+Admins with this enabled **can manage and delete counters permanently**.
+</Callout>
+
+
+You can set these permissions in `2` ways:
+
+---
+
+#### 1. Global admin defaults
+Set default permissions that apply to all admins.
+This controls what every admin can access by default.
+
+#### 2. Per-user permissions
+You can set permissions per admin.
+These override the defaults.
+
+---
+
 ## Creating a user
 
 To create a new user:
@@ -69,17 +108,6 @@ To create a new user:
 
 The new user can log in immediately using the credentials you set.
 
----
-
-## Managing users
-
-From the users list, you can:
-- Search for users
-- Filter by role
-- See who owns which account
-- Edit or remove users
-
-**Be careful when deleting users, as any counters they own may be affected.**
 
 ---
 
