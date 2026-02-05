@@ -28,10 +28,10 @@ This is useful if you want something closer to **"real"** visitors.
 
 ### Every-visit
 
-**This mode counts every page load.**
+**This mode counts every page load and stores the visitor IP.**
 
 Refreshing the page will increase the counter each time, depending on the throttle setting.
-By default, the throttle is `0s`, meaning every refresh counts.
+By default, the throttle is `0s`, meaning every refresh counts. The IP is only used for throttling and stats, not to prevent counting.
 
 You can think of this like an old-school hit counter from early web days.
 
