@@ -32,6 +32,7 @@ Some options can be changed later from `/settings`, while others are only read w
 | `HOME_TITLE` | `Voux · Simple Free & Open Source Hit Counter...` | The homepage `<title>` tag value. Editable in settings. |
 | `UNLIMITED_THROTTLE_SECONDS` | `0` | Seconds to wait before counting the same IP again in "Every visit" mode. `0` disables throttling. Applies only on first boot, once `data/config.json` exists, update the throttle from `/settings` or edit that file (`config.json`) (deleting it will regenerate from `.env`). |
 | `DEV_MODE` | `development` | Use `development` in `.env` to serve HTML/JS/CSS with `no-store` caching. |
+| `TRUST_PROXY` | `loopback` | Tells Voux how to detect the real visitor IP when something like Cloudflare, Nginx, Caddy, or a tunnel is in front of it. If your proxy sends traffic to `localhost` (for example `127.0.0.1:3000`), use `loopback` **(which is the default)**. If it sends traffic using another internal IP like `172.x.x.x` (common in Docker or multi-server setups), use `1`. Use `false` only if Voux is directly exposed to the internet with no proxy at all. |
 
 {/* i feel like this looks better */}
 &nbsp;
