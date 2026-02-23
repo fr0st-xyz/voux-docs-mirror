@@ -15,13 +15,15 @@ docker run -d \
   -p 8787:8787 \
   -e ADMIN_USERNAME=admin \
   -e ADMIN_PASSWORD=change-this-password \
+  # -e PUBLIC_BASE_URL=https://your-domain.com \
   -v $(pwd)/data:/app/data \
   ghcr.io/quintixlabs/voux/voux:latest
 ```
 
 <Callout title="Read this first" type="warning">
-You must set `ADMIN_USERNAME` and `ADMIN_PASSWORD` to your own values.
-Do not leave the example credentials.
+You must set `ADMIN_USERNAME` and `ADMIN_PASSWORD` to your own values. **Do not leave the example credentials!** 
+<p />
+If you run **Voux** on a public domain, set `PUBLIC_BASE_URL` to your full URL (for example, https://your-domain.com) so embeds and previews use the correct **HTTPS** address.
 </Callout>
 
 ---
@@ -42,13 +44,15 @@ services:
     environment:
       - ADMIN_USERNAME=admin
       - ADMIN_PASSWORD=change-this-password
+      # - PUBLIC_BASE_URL=https://your-domain.com
     volumes:
       - ./data:/app/data
 ```
 
 <Callout title="Read this first" type="warning">
-You must set `ADMIN_USERNAME` and `ADMIN_PASSWORD` to your own values.
-Do not leave the example credentials.
+You must set `ADMIN_USERNAME` and `ADMIN_PASSWORD` to your own values. **Do not leave the example credentials!** 
+<p />
+If you run **Voux** on a public domain, set `PUBLIC_BASE_URL` to your full URL (for example, https://your-domain.com) so embeds and previews use the correct **HTTPS** address.
 </Callout>
 
 

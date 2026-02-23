@@ -33,6 +33,12 @@ Some options can be changed later from `/settings`, while others are only read w
 | `UNLIMITED_THROTTLE_SECONDS` | `0` | Seconds to wait before counting the same IP again in "Every visit" mode. `0` disables throttling. Applies only on first boot, once `data/config.json` exists, update the throttle from `/settings` or edit that file (`config.json`) (deleting it will regenerate from `.env`). |
 | `DEV_MODE` | `development` | Use `development` in `.env` to serve HTML/JS/CSS with `no-store` caching. |
 | `TRUST_PROXY` | `loopback` | Tells Voux how to detect the real visitor IP when something like Cloudflare, Nginx, Caddy, or a tunnel is in front of it. If your proxy sends traffic to `localhost` (for example `127.0.0.1:3000`), use `loopback` **(which is the default)**. If it sends traffic using another internal IP like `172.x.x.x` (common in Docker or multi-server setups), use `1`. Use `false` only if Voux is directly exposed to the internet with no proxy at all. |
+| `BACKUP_DIR` | `./data/backups` | Folder where `.db` backups are stored. |
+| `AUTO_BACKUP_FREQUENCY` | `off` | How often backups run (`off`, `daily`, or `weekly`). |
+| `AUTO_BACKUP_TIME` | `03:00` | Time of day when automatic backups run (24h format). |
+| `AUTO_BACKUP_WEEKDAY` | `0` | Day of the week for weekly backups (`0` = Sunday). |
+| `AUTO_BACKUP_RETENTION` | `7` | How many backup files to keep before older ones are deleted. |
+| `AUTO_BACKUP_INCLUDE_JSON` | `false` | If `true`, also includes JSON exports when creating automatic backups. |
 
 {/* i feel like this looks better */}
 &nbsp;
