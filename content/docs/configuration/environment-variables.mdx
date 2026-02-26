@@ -27,12 +27,20 @@ Some options can be changed later from `/settings`, while others are only read w
 | `DEFAULT_ALLOWED_MODES` | `unique,unlimited` | Comma-separated list of modes to allow (`unique`, `unlimited`) for counters. You can change it later in the dashboard. |
 | `COUNTER_CREATE_LIMIT` | `5` | How many counters a single IP can create before hitting the one-minute cooldown. |
 | `COUNTER_CREATE_WINDOW_MS` | `60000` | Window length (in ms) for the above limit. Leave it alone unless you need a different window. |
+| `COUNTER_CREATE_TRACKER_IDLE_TTL_MS` | `900000` | How long (in ms) inactive IP entries stay in memory before being removed. |
+| `COUNTER_CREATE_TRACKER_CLEANUP_INTERVAL_MS` | `60000` | How often (in ms) the counter creation tracker runs cleanup. |
+| `COUNTER_CREATE_TRACKER_MAX_ENTRIES` | `20000` | Maximum number of tracked IP entries for counter creation. |
+| `COUNTER_CREATE_TRACKER_EVICT_PERCENT` | `0.1` | Percentage of entries removed when the tracker reaches its limit. |
 | `INACTIVE_DAYS_THRESHOLD` | `30` | Days with no hits before a counter shows an "Inactive" badge in the dashboard. |
 | `BRAND_NAME` | `Voux` | Default display name (used in titles, hero text). You can override it in `/settings`. |
 | `HOME_TITLE` | `Voux · Simple Free & Open Source Hit Counter...` | The homepage `<title>` tag value. Editable in settings. |
 | `UNLIMITED_THROTTLE_SECONDS` | `0` | Seconds to wait before counting the same IP again in "Every visit" mode. `0` disables throttling. Applies only on first boot, once `data/config.json` exists, update the throttle from `/settings` or edit that file (`config.json`) (deleting it will regenerate from `.env`). |
 | `DEV_MODE` | `development` | Use `development` in `.env` to serve HTML/JS/CSS with `no-store` caching. |
 | `TRUST_PROXY` | `loopback` | Tells Voux how to detect the real visitor IP when something like Cloudflare, Nginx, Caddy, or a tunnel is in front of it. If your proxy sends traffic to `localhost` (for example `127.0.0.1:3000`), use `loopback` **(which is the default)**. If it sends traffic using another internal IP like `172.x.x.x` (common in Docker or multi-server setups), use `1`. Use `false` only if Voux is directly exposed to the internet with no proxy at all. |
+| `LOGIN_LIMITER_IDLE_TTL_MS` | `1800000` | How long (in ms) inactive login attempts stay tracked before being removed. |
+| `LOGIN_LIMITER_CLEANUP_INTERVAL_MS` | `60000` | How often (in ms) the login limiter runs cleanup. |
+| `LOGIN_LIMITER_MAX_ENTRIES` | `20000` | Maximum number of tracked login entries in memory. |
+| `LOGIN_LIMITER_EVICT_PERCENT` | `0.1` | Percentage of login entries removed when the limiter reaches its limit. |
 | `BACKUP_DIR` | `./data/backups` | Folder where `.db` backups are stored. |
 | `AUTO_BACKUP_FREQUENCY` | `off` | How often backups run (`off`, `daily`, or `weekly`). |
 | `AUTO_BACKUP_TIME` | `03:00` | Time of day when automatic backups run (24h format). |
