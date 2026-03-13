@@ -43,7 +43,9 @@ cp .env.example .env
 Open `.env` and set your settings. This is where you configure your **admin login**, **site URL**, **port**, and **other options**. 
 You must set `ADMIN_USERNAME` + `ADMIN_PASSWORD` before running the server.
 <p />
-If you run **Voux** on a public domain, set `PUBLIC_BASE_URL` to your full URL (for example, https://your-domain.com) so embeds and previews use the correct **HTTPS** address. If you want a development setup, add `DEV_MODE=development`. 
+If you run **Voux** on a public domain, set `PUBLIC_BASE_URL` to your full URL (for example, https://your-domain.com)
+<p />
+If **Voux** is behind a **reverse proxy** or **tunnel** (for example `Nginx`, `Caddy`, `Cloudflare Tunnel`, etc.), also set: `TRUST_PROXY=1`
 </Callout>
 
 ### 4. Start Voux

@@ -16,6 +16,7 @@ docker run -d \
   -e ADMIN_USERNAME=admin \
   -e ADMIN_PASSWORD=change-this-password \
   # -e PUBLIC_BASE_URL=https://your-domain.com \
+  # -e TRUST_PROXY=1 \
   -v $(pwd)/data:/app/data \
   ghcr.io/quintixlabs/voux/voux:latest
 ```
@@ -23,7 +24,9 @@ docker run -d \
 <Callout title="Read this first" type="warning">
 You must set `ADMIN_USERNAME` and `ADMIN_PASSWORD` to your own values. **Do not leave the example credentials!** 
 <p />
-If you run **Voux** on a public domain, set `PUBLIC_BASE_URL` to your full URL (for example, https://your-domain.com) so embeds and previews use the correct **HTTPS** address.
+If you run **Voux** on a public domain, set `PUBLIC_BASE_URL` to your full URL (for example, https://your-domain.com)
+<p />
+If **Voux** is behind a **reverse proxy** or **tunnel** (for example `Nginx`, `Caddy`, `Cloudflare Tunnel`, etc.), also set: `TRUST_PROXY=1`
 </Callout>
 
 ---
@@ -45,6 +48,7 @@ services:
       - ADMIN_USERNAME=admin
       - ADMIN_PASSWORD=change-this-password
       # - PUBLIC_BASE_URL=https://your-domain.com
+      # - TRUST_PROXY: "1"
     volumes:
       - ./data:/app/data
 ```
@@ -52,7 +56,9 @@ services:
 <Callout title="Read this first" type="warning">
 You must set `ADMIN_USERNAME` and `ADMIN_PASSWORD` to your own values. **Do not leave the example credentials!** 
 <p />
-If you run **Voux** on a public domain, set `PUBLIC_BASE_URL` to your full URL (for example, https://your-domain.com) so embeds and previews use the correct **HTTPS** address.
+If you run **Voux** on a public domain, set `PUBLIC_BASE_URL` to your full URL (for example, https://your-domain.com)
+<p />
+If **Voux** is behind a **reverse proxy** or **tunnel** (for example `Nginx`, `Caddy`, `Cloudflare Tunnel`, etc.), also set: `TRUST_PROXY=1`
 </Callout>
 
 
